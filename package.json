@@ -1,0 +1,26 @@
+{
+  "name": "twohue-state-machine-leaderboard-server",
+  "version": "1.0.0",
+  "description": "A server that handles the leaderboard data for twohue",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "pg-promise": "^10.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " node index.js",
+    "dev": "MODE='development' nodemon ./bin/www"
+  },
+  "keywords": [
+    "leaderboard"
+  ],
+  "author": "Sarah Phillips",
+  "license": "ISC"
+}
