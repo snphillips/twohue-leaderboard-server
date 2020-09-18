@@ -5,6 +5,9 @@
 -- ================================================
 -- HOW TO DELETE DATABASE:
 -- ================================================
+-- In the terminal:
+-- 1) To start postgres (assuming it is installed) type: psql
+-- 2) To view the databases, type: \list
 -- DROP DATABASE IF EXISTS twohue-leaderboard;
 
 
@@ -45,5 +48,12 @@ CREATE TABLE IF NOT EXISTS leaderboard (
 -- 10) Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
 INSERT INTO leaderboard (player, score)
-VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
+VALUES ('george', 4), ('jerry', 6), ('kramer', 21), ('newman', 17), ('elaine', 33), ('putty', 100), ('mulva', 13), ('penske', 85)
 RETURNING player;
+
+
+-- 10b) When seeding Heroku - Insert some dummy values to get you started
+-- (the RETURNING is just thre to show you that is happened)
+-- INSERT INTO leaderboard (player, score)
+-- VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
+-- RETURNING player;

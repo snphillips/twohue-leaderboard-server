@@ -36,34 +36,26 @@ app.delete('/players/:score', db.deletePlayer)
 
 
 
-        // Heroku
-        // https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
-        // *****************
-        const { Client } = require('pg');
+        // // Heroku
+        // // https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+        // // *****************
+        // const { Client } = require('pg');
 
-        const client = new Client({
-          connectionString: process.env.DATABASE_URL,
-          // ssl: true,
-        });
+        // const client = new Client({
+        //   connectionString: process.env.DATABASE_URL,
+        //   // ssl: true,
+        // });
 
-        client.connect();
+        // client.connect();
 
-        client.query('SELECT * FROM leaderboard LIMIT 10;', (err, res) => {
-          if (err) throw err;
-          for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-          }
-          client.end();
-        });
-        // *****************
-
-
-
-
-
-
-
-
+        // client.query('SELECT * FROM leaderboard LIMIT 10;', (err, res) => {
+        //   if (err) throw err;
+        //   for (let row of res.rows) {
+        //     console.log(JSON.stringify(row));
+        //   }
+        //   client.end();
+        // });
+        // // *****************
 
 
 
