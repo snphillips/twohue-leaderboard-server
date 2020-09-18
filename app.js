@@ -20,11 +20,9 @@ const db = require('./queries')
 // const port = 3001
 const port = process.env.PORT || 3001
 
-
-
-
 const { DATABASE_URL } = process.env;
 
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.json({ info: 'twohue-leaderboard' })
