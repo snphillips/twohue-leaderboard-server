@@ -17,7 +17,9 @@ const app = express();
 const db = require('./queries')
 
 // server configuration
-const port = 3001
+// const port = 3001
+const port = process.env.PORT || 3001
+
 
 
 
