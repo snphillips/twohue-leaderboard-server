@@ -57,3 +57,5 @@ RETURNING player;
 -- INSERT INTO leaderboard (player, score)
 -- VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
 -- RETURNING player;
+
+
