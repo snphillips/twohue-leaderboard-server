@@ -22,10 +22,6 @@ const port = 3001
 
 const { DATABASE_URL } = process.env;
 
-// All your routes are in there
-// const routes = require('./routes');
-
-
 
 app.get('/', (req, res) => {
   res.json({ info: 'twohue-leaderboard' })
@@ -42,7 +38,7 @@ app.delete('/players/:score', db.deletePlayer)
 // **********************************
 app.use(cors())
 app.use(bodyParser.json());
-// app.use('/', routes);
+
 
 
 // Error Handlers

@@ -9,7 +9,7 @@
 
 
 -- ================================================
--- HOW TO DELETE DATABASE:
+-- HOW TO CREATE DATABASE:
 -- ================================================
 -- CREATE DATABASE twohue-leaderboard;
 
