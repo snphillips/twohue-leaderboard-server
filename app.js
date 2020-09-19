@@ -17,15 +17,14 @@ const app = express();
 const db = require('./queries')
 
 // server configuration
-// const port = 3001
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3001;
 
 const { DATABASE_URL } = process.env;
 
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.json({ info: 'twohue-leaderboard' })
+  res.json({ info: 'twohueleaderboard' })
 })
 
 app.get('/players', db.getPlayers)

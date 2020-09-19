@@ -1,22 +1,25 @@
 
 
 const Pool = require('pg').Pool
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   user: process.env.USER,
   host: process.env.DB_HOST || 'localhost',
   password: process.env.DBPASSWORD,
-  database: process.env.DATABASE,
+  database: 'twohueleaderboard',
   port: process.env.DB_PORT || 5432
 })
 
 
 
 const getPlayers = (request, response) => {
-  pool.query('SELECT * FROM leaderboard ORDER BY id ASC LIMIT 10;', (error, results) => {
+  pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 20;', (error, results) => {
     if (error) {
       throw error
     }
+      console.log("hihi", results)
+
     response.status(200).json(results.rows)
   })
 }
