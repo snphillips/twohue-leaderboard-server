@@ -21,38 +21,44 @@ const port = process.env.PORT || 3001;
 
 const { DATABASE_URL } = process.env;
 
-app.use(cors())
-
-app.get('/', (req, res) => {
-  res.json({ info: 'twohueleaderboard' })
-})
-
-app.get('/players', db.getPlayers)
-app.get('/players/:id', db.getPlayerById)
-app.post('/players', db.createPlayer)
-app.put('/players/:id', db.updatePlayer)
-app.delete('/players/:score', db.deletePlayer)
-
-
 
 // **********************************
 // app.uses
 // **********************************
 app.use(cors())
 app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+
+
+app.get('/', (req, res) => {
+  res.json({ info: 'twohueleaderboard' })
+})
+
+
+app.get('/players', db.getPlayers)
+app.get('/players/:id', db.getPlayerById)
+app.post('/players', db.createPlayer)
+app.put('/players/:id', db.updatePlayer)
+app.delete('/players/:id', db.deletePlayer)
+
+
 
 
 
 // Error Handlers
-app.use((err, req, res, next) => {
-  res.json(err);
-  res.status(500).send('Oh no a 500 error')
-});
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Status 500. Something broke.')
+})
 
 
-app.use((req, res, next) => {
-  res.status(404).send(`404 error. I can't find that.`)
-});
+// app.use((req, res, next) => {
+//   res.status(404).send(`404 error. I can't find that.`)
+// });
 
 
 app.listen(port, () => {

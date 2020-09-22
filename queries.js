@@ -7,11 +7,12 @@ const pool = new Pool({
   user: process.env.USER,
   host: process.env.DB_HOST || 'localhost',
   password: process.env.DBPASSWORD,
+  // database: process.env.DATABASE || 'twohueleaderboard',
   database: 'twohueleaderboard',
   port: process.env.DB_PORT || 5432
 })
 
-
+// note: you may need to tweak database: in the pool to get heroku working
 
 const getPlayers = (request, response) => {
   pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 20;', (error, results) => {
@@ -41,8 +42,10 @@ const createPlayer = (request, response) => {
   pool.query('INSERT INTO leaderboard (player, score) VALUES ($1, $2)', [player, score], (error, results) => {
     if (error) {
       throw error
+    } else {
+      response.status(201).send(`Player added with ID: ${result.insertId}`)
+      // response.send(`Player added with ID: ${results.insertId}`)
     }
-    response.status(201).send(`Player added with ID: ${result.insertId}`)
   })
 }
 
@@ -51,17 +54,17 @@ const updatePlayer = (request, response) => {
   const { player, score } = request.body
 
   pool.query(
-    'UPDATE leaderboard SET player = $1, score = $2 WHERE id = $3',
-    [player, score, id],
-    (error, results) => {
+    'UPDATE leaderboard SET player = $1, score = $2 WHERE id = $3', [player, score, id], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`Player modified with ID: ${id}`)
+      // response.status(200).send(`Player modified with ID: ${id}`)
+      response.send(`Player modified with ID: ${id}`)
     }
   )
 }
 
+// works
 const deletePlayer = (request, response) => {
   const id = parseInt(request.params.id)
 
