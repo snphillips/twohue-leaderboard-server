@@ -36,6 +36,7 @@ const getPlayerById = (request, response) => {
   })
 }
 
+// works
 const createPlayer = (request, response) => {
   const { player, score } = request.body
 
@@ -43,12 +44,12 @@ const createPlayer = (request, response) => {
     if (error) {
       throw error
     } else {
-      response.status(201).send(`Player added with ID: ${result.insertId}`)
-      // response.send(`Player added with ID: ${results.insertId}`)
+      response.status(201).send(`Player added with ID: ${results.insertId}`)
     }
   })
 }
 
+// works
 const updatePlayer = (request, response) => {
   const id = parseInt(request.params.id)
   const { player, score } = request.body
