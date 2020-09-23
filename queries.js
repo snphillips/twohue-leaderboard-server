@@ -15,7 +15,7 @@ const pool = new Pool({
 // note: you may need to tweak database: in the pool to get heroku working
 
 const getPlayers = (request, response) => {
-  pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 20;', (error, results) => {
+  pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10;', (error, results) => {
     if (error) {
       throw error
     }
