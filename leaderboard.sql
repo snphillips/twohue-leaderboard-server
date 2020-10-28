@@ -48,7 +48,8 @@ CREATE TABLE IF NOT EXISTS leaderboard (
 -- 10) Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
 INSERT INTO leaderboard (player, score)
-VALUES ('george', 4), ('jerry', 6), ('kramer', 21), ('newman', 17), ('elaine', 33), ('puddy', 100), ('mulva', 13), ('penske', 85), ('mr pitt', 44), ('the drake', 49)
+-- VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
+VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0)
 RETURNING player;
 
 

@@ -4,6 +4,12 @@ const express = require('express');
 // npm package to allow cross origin resource sharing
 const cors = require('cors');
 
+// was troubleshooting cors issues
+// let corsOptions = {
+//   origin: process.env.ORIGIN || 'http://localhost:3000/',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+
 // Built in bodyParser middleware to be able to capture data coming via a form.
 // body-parse parses incoming request bodies in a middleware before your handlers,
 // available under the req.body property.
@@ -25,6 +31,8 @@ const { DATABASE_URL } = process.env;
 // **********************************
 // app.uses
 // **********************************
+// according to docs, this should enable all CORS requests-
+// but I get an error sometimes (but not always)
 app.use(cors())
 app.use(bodyParser.json());
 app.use(
@@ -34,6 +42,7 @@ app.use(
 )
 
 
+// app.get('/', cors(corsOptions), (req, res) => {
 app.get('/', (req, res) => {
   res.json({ info: 'twohueleaderboard' })
 })
