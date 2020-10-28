@@ -5,7 +5,7 @@ note: the backend server for the leaderboard can be found here: https://github.c
 
 clone this repo:
 
-`git clone https://github.com/snphillips/twohue-state-chart.git`
+`git clone https://github.com/snphillips/twohue-state-machine-leaderboard-server.git`
 
 get into the correct directory:
 
