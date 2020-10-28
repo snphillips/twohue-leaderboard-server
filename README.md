@@ -1,7 +1,8 @@
-# Twohue Leaderboard Server
+## Twohue Leaderboard Server
+
+This is the backend server for the color-mixing game TwoHue which can be found here:  
 
 ## Getting Started
-note: the backend server for the leaderboard can be found here: https://github.com/snphillips/twohue-state-machine-leaderboard-server
 
 clone this repo:
 
