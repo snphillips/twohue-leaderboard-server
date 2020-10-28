@@ -1,6 +1,8 @@
 ## Twohue Leaderboard Server
 
-This is the backend server for the color-mixing game TwoHue which can be found here:  
+This is the backend server for the color-mixing game TwoHue which can be found here: https://github.com/snphillips/twohue-state-chart.git
+View the deployed game here: https://twohue-state-machine.surge.sh/
+This repo contains the server which tracks the highest score players in a leaderboard.
 
 ## Getting Started
 
