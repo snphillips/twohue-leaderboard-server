@@ -26,5 +26,5 @@ start the server:
 
 your browser should open to http://localhost:3001/ !
 
-(TODO: instructions are incomplete)
+(TODO: instructions are incomplete - include how to seed database)
 
