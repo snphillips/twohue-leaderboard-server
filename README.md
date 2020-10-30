@@ -26,8 +26,6 @@ start the server:
 
 your browser should open to http://localhost:3001/ !
 
-(TODO: instructions are incomplete - include how to seed database)
-
 Now you need to create the database. To start postgres (assuming it is installed) type: 
 
 `psql`
@@ -52,8 +50,8 @@ To view the database table you created type:
 
 `\dt`
 
-Insert some dummy values to get you started (the RETURNING is just thre to show you that is happened):
+Insert some dummy values to get you started (the "RETURNING player" is optional but it shows you the players for you to confirm the seeding worked):
 
 `INSERT INTO leaderboard (player, score)
-VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)`
-RETURNING player;
+VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
+RETURNING player;`
