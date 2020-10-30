@@ -33,23 +33,22 @@
 --   \i leaderboard.sql
 
 -- THE SLOW WAY:
--- 7) Start fresh by droppin current table:
+-- 7) Start fresh by dropping current table:
 DROP TABLE IF EXISTS leaderboard;
 
 -- 8) Crate the table
 CREATE TABLE IF NOT EXISTS leaderboard (
-    id SERIAL PRIMARY KEY,
-	player VARCHAR (12) NOT NULL,
-	score SMALLINT NOT NULL
-	);
+id SERIAL PRIMARY KEY,
+player VARCHAR (12) NOT NULL,
+score SMALLINT NOT NULL
+);
 
 
 -- 9) To view the database tables, you created type \dt
 -- 10) Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
 INSERT INTO leaderboard (player, score)
--- VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
-VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0)
+VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
 RETURNING player;
 
 
