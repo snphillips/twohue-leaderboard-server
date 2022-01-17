@@ -37,7 +37,7 @@
 DROP TABLE IF EXISTS leaderboard;
 
 -- 8) Crate the table
-CREATE TABLE IF NOT EXISTS leaderboard (
+CREATE TABLE [IF NOT EXISTS] leaderboard (
 id SERIAL PRIMARY KEY,
 player VARCHAR (12) NOT NULL,
 score SMALLINT NOT NULL
@@ -47,14 +47,14 @@ score SMALLINT NOT NULL
 -- 9) To view the database tables, you created type \dt
 -- 10) Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
-INSERT INTO leaderboard (player, score)
-VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
+INSERT INTO leaderboard(player, score)
+VALUES ('george', 3), ('jerry', 9), ('kramer', 12), ('newman', 2), ('elaine', 78), ('puddy', 48, ('mulva', 23), ('penske', 1), ('mr pitt', 9), ('the drake', 7)
 RETURNING player;
 
 
 -- 10b) When seeding Heroku - Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
--- INSERT INTO leaderboard (player, score)
+-- INSERT INTO twohueleaderboard (player, score)
 -- VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
 -- RETURNING player;
 

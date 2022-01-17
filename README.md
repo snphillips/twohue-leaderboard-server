@@ -40,7 +40,7 @@ Create the database for this project:
 
 Now create the table:
 
-`CREATE TABLE IF NOT EXISTS leaderboard (
+`CREATE TABLE IF NOT EXISTS twohueleaderboard (
   id SERIAL PRIMARY KEY,
 	player VARCHAR (12) NOT NULL,
 	score SMALLINT NOT NULL
@@ -52,6 +52,6 @@ To view the database table you created type:
 
 Insert some dummy values to get you started (the "RETURNING player" is optional but it shows you the players for you to confirm the seeding worked):
 
-`INSERT INTO leaderboard (player, score)
+`INSERT INTO twohueleaderboard (player, score)
 VALUES ('george', 0), ('jerry', 0), ('kramer', 0), ('newman', 0), ('elaine', 0), ('puddy', 0), ('mulva', 0), ('penske', 0), ('mr pitt', 0), ('the drake', 0)
 RETURNING player;`

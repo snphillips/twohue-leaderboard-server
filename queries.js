@@ -1,22 +1,24 @@
 
-
 const Pool = require('pg').Pool
 
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  // connectionString: process.env.DATABASE_URL,
+  host: process.env.DB_HOST,
+  database: process.env.DATABASE,
   user: process.env.USER,
-  host: process.env.DB_HOST || 'localhost',
+  port: 5432,
   password: process.env.DBPASSWORD,
-  // database: process.env.DATABASE || 'twohueleaderboard',
-  database: 'twohueleaderboard',
-  port: process.env.DB_PORT || 5432
+  uri: process.env.URI,
 })
 
-// note: you may need to tweak database: in the pool to get heroku working
+// NOTE: you need to tweak database:
+// in the pool to get heroku working
 
 const getPlayers = (request, response) => {
   pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10;', (error, results) => {
     if (error) {
+      console.log("pool.query error:", error)
       throw error
     }
       console.log("hihi", results)
@@ -40,7 +42,7 @@ const getPlayerById = (request, response) => {
 const createPlayer = (request, response) => {
   const { player, score } = request.body
 
-  pool.query('INSERT INTO leaderboard (player, score) VALUES ($1, $2)', [player, score], (error, results) => {
+  pool.query('INSERT INTO leaderboard (player, score) VALUES ($1, $2) RETURNING id', [player, score], (error, results) => {
     if (error) {
       throw error
     } else {

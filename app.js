@@ -4,8 +4,20 @@ const express = require('express');
 // npm package to allow cross origin resource sharing
 const cors = require('cors');
 
-// Built in bodyParser middleware to be able to capture data coming via a form.
-// body-parse parses incoming request bodies in a middleware before your handlers,
+const dotenv = require('dotenv')
+dotenv.config()
+
+// Sarah, should this stay here?
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config(); 
+}
+
+// remove this after you've confirmed it working
+// console.log('process.env is:', process.env)
+
+// Built-in bodyParser middleware to be able to capture data
+// coming via a form. Body-parse parses incoming request bodies
+// in a middleware before your handlers,
 // available under the req.body property.
 // TLDR: makes your forms work
 const bodyParser = require('body-parser');
@@ -28,6 +40,7 @@ const { DATABASE_URL } = process.env;
 // according to docs, this should enable all CORS requests-
 // but I get an error sometimes (but not always)
 app.use(cors())
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -38,7 +51,7 @@ app.use(
 
 // app.get('/', cors(corsOptions), (req, res) => {
 app.get('/', (req, res) => {
-  res.json({ info: 'twohueleaderboard' })
+  res.json({ info: 'Hello from twohueleaderboard' })
 })
 
 
@@ -65,5 +78,6 @@ app.use((req, res, next) => {
 app.listen(port, () => {
   console.log(`server running at http://localhost:${port}`)
 })
+
 
 module.exports = app;
