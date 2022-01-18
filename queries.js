@@ -7,9 +7,10 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DATABASE,
   user: process.env.USER,
-  port: 5432,
+  port: process.env.PORT || 5432,
   password: process.env.DBPASSWORD,
   uri: process.env.URI,
+  database_url: process.env.DATABASE_URL,
 })
 
 // NOTE: you need to tweak database:
