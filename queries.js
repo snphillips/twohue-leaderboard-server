@@ -3,13 +3,13 @@ const Pool = require('pg').Pool
 
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
   // host: process.env.DB_HOST,
   // database: process.env.DATABASE,
-  user: process.env.USER,
   // port: process.env.PORT || 5432,
-  password: process.env.DBPASSWORD,
   // URI: process.env.URI,
+  connectionString: process.env.DATABASE_URL,
+  user: process.env.USER,
+  password: process.env.DBPASSWORD,
   database_url: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
