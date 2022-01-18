@@ -12,6 +12,8 @@ const pool = new Pool({
   user: process.env.USER,
   password: process.env.DBPASSWORD,
   database_url: process.env.DATABASE_URL,
+  // comment out the ssl rejectUnauthorized block
+  // when in development
   ssl: {
     rejectUnauthorized: false
   }
