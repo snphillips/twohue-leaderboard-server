@@ -3,10 +3,11 @@ const Pool = require('pg').Pool
 
 
 const pool = new Pool({
-  // host: process.env.DB_HOST,
-  // database: process.env.DATABASE,
-  // port: process.env.PORT || 5432,
-  // URI: process.env.URI,
+  host: process.env.DB_HOST,
+  database: process.env.DATABASE,
+  port: process.env.PORT || 5432,
+  URI: process.env.URI,
+
   connectionString: process.env.DATABASE_URL,
   user: process.env.USER,
   password: process.env.DBPASSWORD,
