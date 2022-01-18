@@ -7,12 +7,11 @@ const cors = require('cors');
 const dotenv = require('dotenv')
 dotenv.config()
 
-// Sarah, should this stay here?
 if (process.env.NODE_ENV != 'production') {
   require('dotenv').config(); 
 }
 
-// remove this after you've confirmed it working
+// Confirmed process.env is working
 // console.log('process.env is:', process.env)
 
 // Built-in bodyParser middleware to be able to capture data
