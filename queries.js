@@ -3,14 +3,14 @@ const Pool = require('pg').Pool
 
 
 const pool = new Pool({
-  // connectionString: process.env.DATABASE_URL,
-  host: process.env.DB_HOST,
-  database: process.env.DATABASE,
-  user: process.env.USER,
-  port: process.env.PORT || 5432,
-  password: process.env.DBPASSWORD,
-  uri: process.env.URI,
-  database_url: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL,
+  Host: process.env.DB_HOST,
+  Database: process.env.DATABASE,
+  User: process.env.USER,
+  Port: process.env.PORT || 5432,
+  Password: process.env.DBPASSWORD,
+  URI: process.env.URI,
+  // database_url: process.env.DATABASE_URL,
 })
 
 // NOTE: you need to tweak database:
