@@ -10,7 +10,7 @@ const pool = new Pool({
   Port: process.env.PORT || 5432,
   Password: process.env.DBPASSWORD,
   URI: process.env.URI,
-  database_url: process.env.DATABASE_URL,
+  // database_url: process.env.DATABASE_URL,
 })
 
 // NOTE: you need to tweak database:
