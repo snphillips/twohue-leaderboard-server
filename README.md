@@ -1,6 +1,7 @@
 ## Twohue Leaderboard Server
 
-This is the backend server for the color-mixing game TwoHue which can be found here: https://github.com/snphillips/twohue.git
+This is the backend server for the color-mixing game TwoHue.
+TwoHue the React app can be found here: https://github.com/snphillips/twohue.git
 
 View the deployed game here: https://twohue.surge.sh/
 
@@ -14,7 +15,7 @@ clone this repo:
 
 get into the correct directory:
 
-`cd twohue-state-machine`
+`cd twohue-leaderboard-server`
 
 run npm to install all the dependencies:
 
