@@ -7,7 +7,6 @@ const pool = new Pool({
   database: process.env.DATABASE,
   port: process.env.PORT || 5432,
   URI: process.env.URI,
-
   connectionString: process.env.DATABASE_URL,
   user: process.env.USER,
   password: process.env.DBPASSWORD,
@@ -18,9 +17,6 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-
-// NOTE: you need to tweak database:
-// in the pool to get heroku working
 
 const getPlayers = (request, response) => {
   pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10;', (error, results) => {
@@ -45,7 +41,6 @@ const getPlayerById = (request, response) => {
   })
 }
 
-// works
 const createPlayer = (request, response) => {
   const { player, score } = request.body
 
@@ -58,7 +53,6 @@ const createPlayer = (request, response) => {
   })
 }
 
-// works
 const updatePlayer = (request, response) => {
   const id = parseInt(request.params.id)
   const { player, score } = request.body
@@ -74,7 +68,6 @@ const updatePlayer = (request, response) => {
   )
 }
 
-// works
 const deletePlayer = (request, response) => {
   const id = parseInt(request.params.id)
 
