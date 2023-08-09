@@ -52,9 +52,9 @@ VALUES ('george', 3), ('jerry', 9), ('kramer', 12), ('newman', 2), ('elaine', 78
 RETURNING player;
 
 
--- 10b) When seeding Heroku - Insert some dummy values to get you started
+-- 10b) When seeding Heroku or AWS - Insert some dummy values to get you started
 -- (the RETURNING is just thre to show you that is happened)
--- INSERT INTO twohueleaderboard (player, score)
+-- INSERT INTO leaderboard (player, score)
 -- VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
 -- RETURNING player;
 
