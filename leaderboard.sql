@@ -37,7 +37,7 @@
 DROP TABLE IF EXISTS leaderboard;
 
 -- 8) Crate the table
-CREATE TABLE [IF NOT EXISTS] leaderboard (
+CREATE TABLE IF NOT EXISTS leaderboard (
 id SERIAL PRIMARY KEY,
 player VARCHAR (12) NOT NULL,
 score SMALLINT NOT NULL
@@ -53,10 +53,12 @@ RETURNING player;
 
 
 -- 10b) When seeding Heroku or AWS - Insert some dummy values to get you started
+-- First, get into the Heroku CLI: heroku pg:psql
 -- (the RETURNING is just thre to show you that is happened)
--- INSERT INTO leaderboard (player, score)
--- VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
--- RETURNING player;
+INSERT INTO leaderboard (player, score)
+VALUES ('janeway', 3), ('7of9', 5), ('jean-luc', 5), ('data', 16), ('worf', 12), ('riker', 9)
+RETURNING player;
+-- quit the Heroku pg:psql CLI the same way: \q
 
 
 

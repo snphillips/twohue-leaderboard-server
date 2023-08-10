@@ -11,9 +11,10 @@ const pool = new Pool({
   database_url: process.env.DATABASE_URL,
   // comment out the ssl rejectUnauthorized block
   // when in development
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // },
+  ssl: {
+    require: true,
+    rejectUnauthorized: false,
+  },
 });
 
 const getPlayers = (request, response) => {
