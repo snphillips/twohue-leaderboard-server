@@ -12,7 +12,6 @@ const pool = new Pool({
   // comment out the ssl rejectUnauthorized block
   // when in development
   ssl: {
-    // require: true,
     rejectUnauthorized: false,
   },
 });
