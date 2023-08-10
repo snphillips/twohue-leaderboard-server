@@ -12,8 +12,8 @@ const pool = new Pool({
   // comment out the ssl rejectUnauthorized block
   // when in development
   // ssl: {
-  //   rejectUnauthorized: false
-  // }
+  //   rejectUnauthorized: false,
+  // },
 });
 
 const getPlayers = (request, response) => {

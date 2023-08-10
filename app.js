@@ -4,11 +4,11 @@ const express = require('express');
 // npm package to allow cross origin resource sharing
 const cors = require('cors');
 
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require('dotenv');
+dotenv.config();
 
 if (process.env.NODE_ENV != 'production') {
-  require('dotenv').config(); 
+  require('dotenv').config();
 }
 
 // Confirmed process.env is working
@@ -25,58 +25,50 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // The location where queries are kept
-const db = require('./queries')
+const db = require('./queries');
 
 // server configuration
 const port = process.env.PORT || 3001;
 
 const { DATABASE_URL } = process.env;
 
-
 // **********************************
 // app.uses
 // **********************************
 // according to docs, this should enable all CORS requests-
 // but I get an error sometimes (but not always)
-app.use(cors())
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-)
-
+);
 
 // app.get('/', cors(corsOptions), (req, res) => {
 app.get('/', (req, res) => {
-  res.json({ info: 'Hello from twohueleaderboard' })
-})
+  res.json({ info: 'Hello from twohueleaderboard api 😎' });
+});
 
-
-app.get('/players', db.getPlayers)
-app.get('/players/:id', db.getPlayerById)
-app.post('/players', db.createPlayer)
-app.put('/players/:id', db.updatePlayer)
-app.delete('/players/:id', db.deletePlayer)
-
-
+app.get('/players', db.getPlayers);
+app.get('/players/:id', db.getPlayerById);
+app.post('/players', db.createPlayer);
+app.put('/players/:id', db.updatePlayer);
+app.delete('/players/:id', db.deletePlayer);
 
 // Error Handlers
 app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Status 500. Something broke.')
-})
-
-
-app.use((req, res, next) => {
-  res.status(404).send(`404 error. I can't find that.`)
+  console.error(err.stack);
+  res.status(500).send('Status 500. Something broke.');
 });
 
+app.use((req, res, next) => {
+  res.status(404).send(`404 error. I can't find that.`);
+});
 
 app.listen(port, () => {
-  console.log(`server running at http://localhost:${port}`)
-})
-
+  console.log(`server running at http://localhost: ${port}`);
+});
 
 module.exports = app;
