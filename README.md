@@ -1,9 +1,10 @@
 ## Twohue Leaderboard Server -- NO LONGER BEING USED
 
 This is the old backend server for the color-mixing game TwoHue. The current project (now serverless) is here: https://github.com/snphillips/twohue-serverless-leaderboard. I didn't want to pay to host my server on Heroku any longer so had to go serverless.
-TwoHue the React app can be found here: https://github.com/snphillips/twohue.git
 
-View the deployed game here: [https://twohue.surge.sh/](https://twohue.netlify.app/)
+The repo for the React app can be found here: https://github.com/snphillips/twohue.git
+
+View the deployed game here: [(https://twohue.netlify.app/](https://twohue.netlify.app/)
 
 This repo contains the server which tracks the highest score players in a leaderboard.
 
