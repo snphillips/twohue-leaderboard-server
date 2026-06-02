@@ -1,58 +1,65 @@
 const Pool = require('pg').Pool;
 
+// const pool = new Pool({
+//   host: process.env.DB_HOST,
+//   database: process.env.DATABASE,
+//   port: process.env.PORT || 5432,
+//   URI: process.env.URI,
+//   connectionString: process.env.DATABASE_URL,
+//   user: process.env.USER,
+//   password: process.env.DBPASSWORD,
+//   database_url: process.env.DATABASE_URL,
+//   // comment out the ssl rejectUnauthorized block
+//   // when in development
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
 const pool = new Pool({
-  host: process.env.DB_HOST,
-  database: process.env.DATABASE,
-  port: process.env.PORT || 5432,
-  URI: process.env.URI,
   connectionString: process.env.DATABASE_URL,
-  user: process.env.USER,
-  password: process.env.DBPASSWORD,
-  database_url: process.env.DATABASE_URL,
-  // comment out the ssl rejectUnauthorized block
-  // when in development
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
-const getPlayers = (request, response) => {
-  pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10;', (error, results) => {
-    if (error) {
-      console.log('pool.query error:', error);
-      throw error;
-    }
-    console.log('results:', results);
-
+const getPlayers = async (request, response, next) => {
+  try {
+    const results = await pool.query('SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10');
     response.status(200).json(results.rows);
-  });
+  } catch (error) {
+    next(error);
+  }
 };
 
-const getPlayerById = (request, response) => {
+const getPlayerById = async (request, response, next) => {
   const id = parseInt(request.params.id);
 
-  pool.query('SELECT * FROM leaderboard WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      throw error;
+  try {
+    const results = await pool.query('SELECT * FROM leaderboard WHERE id = $1', [id]);
+    if (!results.rows.length) {
+      return response.status(404).json({ error: `Player with ID ${id} not found` });
     }
     response.status(200).json(results.rows);
-  });
+  } catch (error) {
+    next(error);
+  }
 };
 
-const createPlayer = (request, response) => {
+const createPlayer = async (request, response, next) => {
   const { player, score } = request.body;
 
-  pool.query(
-    'INSERT INTO leaderboard (player, score) VALUES ($1, $2) RETURNING id',
-    [player, score],
-    (error, results) => {
-      if (error) {
-        throw error;
-      } else {
-        response.status(201).send(`Player added with ID: ${results.insertId}`);
-      }
-    }
-  );
+  if (!player || score === undefined) {
+    return response.status(400).json({ error: 'player and score are required' });
+  }
+
+  try {
+    const results = await pool.query(
+      'INSERT INTO leaderboard (player, score) VALUES ($1, $2) RETURNING id',
+      [player, score]
+    );
+    response.status(201).json({ message: `Player added with ID: ${results.rows[0].id}` });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const updatePlayer = (request, response) => {
