@@ -3,7 +3,7 @@
 This is the backend server for the color-mixing game TwoHue.
 TwoHue the React app can be found here: https://github.com/snphillips/twohue.git
 
-View the deployed game here: https://twohue.surge.sh/
+View the deployed game here: [https://twohue.surge.sh/](https://twohue.netlify.app/)
 
 This repo contains the server which tracks the highest score players in a leaderboard.
 
