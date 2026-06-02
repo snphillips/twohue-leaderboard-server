@@ -1,4 +1,4 @@
-## Twohue Leaderboard Server
+## Twohue Leaderboard Server -- NO LONGER BEING USED
 
 This is the backend server for the color-mixing game TwoHue.
 TwoHue the React app can be found here: https://github.com/snphillips/twohue.git
