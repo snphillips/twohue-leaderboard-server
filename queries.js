@@ -1,21 +1,5 @@
 const Pool = require('pg').Pool;
 
-// const pool = new Pool({
-//   host: process.env.DB_HOST,
-//   database: process.env.DATABASE,
-//   port: process.env.PORT || 5432,
-//   URI: process.env.URI,
-//   connectionString: process.env.DATABASE_URL,
-//   user: process.env.USER,
-//   password: process.env.DBPASSWORD,
-//   database_url: process.env.DATABASE_URL,
-//   // comment out the ssl rejectUnauthorized block
-//   // when in development
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
@@ -31,7 +15,7 @@ const getPlayers = async (request, response, next) => {
 };
 
 const getPlayerById = async (request, response, next) => {
-  const id = parseInt(request.params.id);
+  const id = parseInt(request.params.id, 10);
 
   try {
     const results = await pool.query('SELECT * FROM leaderboard WHERE id = $1', [id]);
