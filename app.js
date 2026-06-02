@@ -4,24 +4,10 @@ const express = require('express');
 // npm package to allow cross origin resource sharing
 const cors = require('cors');
 
-const dotenv = require('dotenv');
-dotenv.config();
-
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-// Confirmed process.env is working
-// console.log('process.env is:', process.env)
-
-// Built-in bodyParser middleware to be able to capture data
-// coming via a form. Body-parse parses incoming request bodies
-// in a middleware before your handlers,
-// available under the req.body property.
-// TLDR: makes your forms work
-const bodyParser = require('body-parser');
-
-// henseforth, the express app is known as app
 const app = express();
 
 // The location where queries are kept
@@ -30,8 +16,6 @@ const db = require('./queries');
 // server configuration
 const port = process.env.PORT || 3001;
 
-const { DATABASE_URL } = process.env;
-
 // **********************************
 // app.uses
 // **********************************
@@ -39,12 +23,9 @@ const { DATABASE_URL } = process.env;
 // but I get an error sometimes (but not always)
 app.use(cors());
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+// replaces body-parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // app.get('/', cors(corsOptions), (req, res) => {
 app.get('/', (req, res) => {
@@ -58,14 +39,15 @@ app.put('/players/:id', db.updatePlayer);
 app.delete('/players/:id', db.deletePlayer);
 
 // Error Handlers
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Status 500. Something broke.');
+app.use((req, res, next) => {
+  res.status(404).json(`404 error. I can't find that.`);
 });
 
-app.use((req, res, next) => {
-  res.status(404).send(`404 error. I can't find that.`);
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).json('Status 500. Something broke.');
 });
+
 
 app.listen(port, () => {
   console.log(`server running at http://localhost: ${port}`);
