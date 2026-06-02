@@ -62,21 +62,26 @@ const createPlayer = async (request, response, next) => {
   }
 };
 
-const updatePlayer = (request, response) => {
+const updatePlayer = async (request, response, next) => {
   const id = parseInt(request.params.id);
   const { player, score } = request.body;
 
-  pool.query(
-    'UPDATE leaderboard SET player = $1, score = $2 WHERE id = $3',
-    [player, score, id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      // response.status(200).send(`Player modified with ID: ${id}`)
-      response.send(`Player modified with ID: ${id}`);
+  if (!player || score === undefined) {
+    return response.status(400).json({ error: 'player and score are required' });
+  }
+
+  try {
+    const results = await pool.query(
+      'UPDATE leaderboard SET player = $1, score = $2 WHERE id = $3',
+      [player, score, id]
+    );
+    if (!results.rowCount) {
+      return response.status(404).json({ error: `Player with ID ${id} not found` });
     }
-  );
+    response.status(200).json({ message: `Player modified with ID: ${id}` });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const deletePlayer = (request, response) => {
