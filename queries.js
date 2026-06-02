@@ -84,15 +84,18 @@ const updatePlayer = async (request, response, next) => {
   }
 };
 
-const deletePlayer = (request, response) => {
+const deletePlayer = async (request, response, next) => {
   const id = parseInt(request.params.id);
 
-  pool.query('DELETE FROM leaderboard WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      throw error;
+  try {
+    const results = await pool.query('DELETE FROM leaderboard WHERE id = $1', [id]);
+    if (!results.rowCount) {
+      return response.status(404).json({ error: `Player with ID ${id} not found` });
     }
-    response.status(200).send(`Player deleted with ID: ${id}`);
-  });
+    response.status(200).json({ message: `Player deleted with ID: ${id}` });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {
